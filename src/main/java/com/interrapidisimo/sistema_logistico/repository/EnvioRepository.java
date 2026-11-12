@@ -1,0 +1,19 @@
+package com.interrapidisimo.sistema_logistico.repository;
+
+import com.interrapidisimo.sistema_logistico.model.Envio;
+import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
+
+
+@Repository
+public interface EnvioRepository extends JpaRepository<Envio, Long> {
+    Page<Envio> findByEstado(String estado, Pageable pageable);
+    List<Envio> findByCliente(String cliente, Pageable pageable);
+    List<Envio> findByPesoKgGreaterThan(double peso);
+    List<Envio> findByClienteAndEstado(String cliente, String estado);
+}
